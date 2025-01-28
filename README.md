@@ -12,11 +12,11 @@
 
 ## What does this project do
 
-## Our project uses a machine learning model to predict music genres from listening to provided MP3 snippets of music.
+## The project uses a trained machine learning model to predict music genres from listening to provided MP3 snippets of music.
 
 ## How it works:
-**The music App** is connected to the user's [Spotify](https://open.spotify.com/) account. The MP3 file gets preprocessed using **Librosa library** - the song gets trimmed to 30 seconds and features extracted. The program checks to see if the song's features are the same as trained model features. Then the preprocessed song gets through the saved machine learning model.
-The matching genre is then displayed in the App. User can add these songs to their **Spotify** account playlist.
+**The music App** is connected to the user's [Spotify](https://open.spotify.com/) account. User is offered to search a song of liking, app gets the preview of the song online. This preview song then gets into the preprocess step and gets sliced to 3 second segments. Using **Librosa library** features extracted in the same process. The program checks to see if the song's features are the similar to trained model features. Then the preprocessed song gets through the saved machine learning model and predicts the genre of the preview song.
+The matching genre is then sent into in the App for the song recommendation. App pulls 20 new song recommendations with matching genre for User. User can create a new playlist with the recommended songs by swiping right or left.  User can add these songs to their **Spotify** account as a playlist.
 
 
 ## Why it's important
