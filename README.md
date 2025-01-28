@@ -18,14 +18,22 @@
 **The music App** is connected to the user's [Spotify](https://open.spotify.com/) account. The MP3 file gets preprocessed using **Librosa library** - the song gets trimmed to 30 seconds and features extracted. The program checks to see if the song's features are the same as trained model features. Then the preprocessed song gets through the saved machine learning model.
 The matching genre is then displayed in the App. User can add these songs to their **Spotify** account playlist.
 
+
+## Why it's important
+Sometimes we hear a song on Spotify and want to find songs in the same genre. Unfortunately Spotify doesn't explicitly say what is the genre of the song it just played.
+
+We provide this option. Groovr uses machine learning algorithm to define song's genre and helps to find songs from the same genre. This way we can create different playlists to match different moods.
+
+
 ## The choice of machine learning model: 
 The machine learning model we used was **CatBoost**.
 
 **CatBoost** (Category Boosting) is a type of machine learning algorithm that uses gradient boosting on decision trees. It’s available as an open source library: [https://catboost.ai/docs/en/](https://catboost.ai/docs/en/)
 This model gave us 92% accuracy for predicting genres. We tried to modify the original **Decision trees** model, but **CatBoost** was more effective and yielded the highest accuracy score.
+Second best option was **XGBoost**, which is also gradient boosting algorithm based on **Decision Trees**
 
 ## Different types of machine learning models we tried:
- - Decision Trees - 64% accuracy
+ - Decision Trees - 67% accuracy
  - Recurrent Neural Network - 70% accuracy
  - Multinomial Logistical Regression - 72% accuracy
  - Neural Network - 88% accuracy
@@ -33,9 +41,6 @@ This model gave us 92% accuracy for predicting genres. We tried to modify the or
  - XGBoost - 90% accuracy
  - CatBoost - 92% accuracy
 
-## Why it's important
-Sometimes we hear a song and want to play similar-sounding songs or find similar-sounding bands. And it helps to see what genre this particular song is because artists vary their genres from album to album. 
-Our moods can be different, and we seek particular kinds of music to match our moods. And that's when people can use our app. Modern music apps lack this selection and only show similar artists. We have a choice of a similar genre as the song we'd like to listen to in the current moment.
 
 ## Ethical Considerations
 We are diligently looking to ensure the music copyrights are not violated.
