@@ -105,7 +105,6 @@ df_test = df.drop(columns=['filename','length'])
 predictions = model.predict(df_test)
 predictions = label_encoder.inverse_transform(predictions)
 df['label'] = predictions
-df[['filename','label']]
 
 print(path)
 print(df['label'].value_counts().index.to_list())
