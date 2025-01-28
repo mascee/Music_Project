@@ -22,9 +22,9 @@ The matching genre is then displayed in the App. User can add these songs to the
 The machine learning model we used was **CatBoost**.
 
 **CatBoost** (Category Boosting) is a type of machine learning algorithm that uses gradient boosting on decision trees. It’s available as an open source library: [https://catboost.ai/docs/en/](https://catboost.ai/docs/en/)
-This model gave us 92% accuracy for predicting genres. We tried to modify original **Decision trees** model, but **CatBoost** was more effective and yielded highest accuracy score.
+This model gave us 92% accuracy for predicting genres. We tried to modify the original **Decision trees** model, but **CatBoost** was more effective and yielded the highest accuracy score.
 
-## Different types of machine learning models we tired:
+## Different types of machine learning models we tried:
  - Decision Trees - 64% accuracy
  - Recurrent Neural Network - 70% accuracy
  - Multinomial Logistical Regression - 72% accuracy
@@ -34,12 +34,12 @@ This model gave us 92% accuracy for predicting genres. We tried to modify origin
  - CatBoost - 92% accuracy
 
 ## Why it's important
-Sometime we hear a song and want to play similar sounding songs or find similar sounding bands. And it helps to see what genre this particular song is, because artists vary their genres from album to album. 
-Our mood can be different, and we seek particular kind of music to match our mood. And that's when people can use our app. Modern music apps lack this selection, and only show similar artists. We have a choice of similar genre as the song we'd like to listen to in the current moment.
+Sometimes we hear a song and want to play similar-sounding songs or find similar-sounding bands. And it helps to see what genre this particular song is because artists vary their genres from album to album. 
+Our moods can be different, and we seek particular kinds of music to match our moods. And that's when people can use our app. Modern music apps lack this selection and only show similar artists. We have a choice of a similar genre as the song we'd like to listen to in the current moment.
 
 ## Ethical Considerations
 We are diligently looking to ensure the music copyrights are not violated.
-Additionaly we would like to mention this App is used as a student project.
+Additionally we would like to mention this App is used as a student project.
 No user data is collected.
 
 ## Data we used
@@ -47,7 +47,7 @@ No user data is collected.
 
 
 ## Future improvements
-This project was done in 2 weeks and for future improvement, more genres could be added, different moods, similar lyrics, playlists.
+This project was done in 2 weeks and for future improvement, more genres could be added, different moods, similar lyrics, and playlists.
 Better accuracy could be achieved. 
 
 
