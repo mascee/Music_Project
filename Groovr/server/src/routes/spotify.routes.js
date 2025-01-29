@@ -16,7 +16,7 @@ router.get("/user/top-genres", requireAuth, spotifyController.getTopGenres);
 router.get("/search", requireAuth, spotifyController.searchTracks);
 
 // Add this new route
-router.get(
+router.post(
   "/recommendations/:trackId",
   requireAuth,
   spotifyController.getRecommendations

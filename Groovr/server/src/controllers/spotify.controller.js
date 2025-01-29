@@ -184,43 +184,59 @@ const spotifyController = {
   },
 
   getRecommendations: async (req, res) => {
-    const { trackId } = req.params;
+    const { previewUrl } = req.body;
+    console.log("Received preview URL:", previewUrl);
 
     try {
-      const accessToken = req.user.access_token;
+      // Call Flask API with the preview URL
+      const flaskResponse = await axios.post("http://127.0.0.1:5000/predict", {
+        url: previewUrl,
+      });
 
-      // Step 1: Get track info and associated genres
-      const trackResponse = await axios.get(
-        `https://api.spotify.com/v1/tracks/${trackId}`,
-        {
-          headers: { Authorization: `Bearer ${accessToken}` },
-        }
-      );
+      console.log("Flask response:", flaskResponse.data);
 
-      const artistId = trackResponse.data.artists[0].id;
-      const artistResponse = await axios.get(
-        `https://api.spotify.com/v1/artists/${artistId}`,
-        {
-          headers: { Authorization: `Bearer ${accessToken}` },
-        }
-      );
-      console.log("artistResponse: ", artistResponse.data);
-      const genres = artistResponse.data.genres;
-      if (genres.length === 0) {
+      // Get the predictions array from the Flask response
+      const predictions = flaskResponse.data.predictions;
+      if (!predictions || predictions.length === 0) {
         return res
           .status(404)
-          .json({ message: "No genres found for the track." });
+          .json({ message: "No genres predicted from the audio." });
       }
 
-      // Step 2: Search for tracks using the first genre
-      const genre = genres[0];
+      // Use the first predicted genre (highest confidence)
+      let primaryGenre = predictions[0];
+      console.log("Using primary genre for recommendations:", primaryGenre);
+
+      // Map 'hiphop' to 'rap' for Spotify's genre system
+      if (primaryGenre === "hiphop") {
+        primaryGenre = "rap";
+      }
+      console.log("Using primary genre for recommendations:", primaryGenre);
+
+      // Get Spotify recommendations based on the primary genre
+      const accessToken = req.user.access_token;
       const searchResponse = await axios.get(
         "https://api.spotify.com/v1/search",
         {
           headers: { Authorization: `Bearer ${accessToken}` },
-          params: { q: `genre:"${genre}"`, type: "track", limit: 50 },
+          params: {
+            q: `genre:${primaryGenre}`,
+            type: "track",
+            limit: 50,
+            market: "US",
+          },
         }
       );
+
+      if (!searchResponse.data.tracks || !searchResponse.data.tracks.items) {
+        console.error(
+          "No tracks found in Spotify response:",
+          searchResponse.data
+        );
+        return res
+          .status(404)
+          .json({ message: "No tracks found for the predicted genre." });
+      }
 
       const recommendedTracks = searchResponse.data.tracks.items.map(
         (track) => ({
@@ -230,11 +246,18 @@ const spotifyController = {
           albumArt: track.album.images[0]?.url,
           previewUrl: track.preview_url,
           uri: track.uri,
+          duration_ms: track.duration_ms,
+          popularity: track.popularity,
+          explicit: track.explicit,
         })
       );
 
       return res.status(200).json({
-        message: `Recommendations based on the genre: ${genre}`,
+        message: `Recommendations based on predicted genres: ${predictions.join(
+          ", "
+        )}`,
+        primaryGenre,
+        allGenres: predictions,
         tracks: recommendedTracks,
       });
     } catch (error) {

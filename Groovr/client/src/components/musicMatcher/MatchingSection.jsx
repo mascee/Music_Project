@@ -7,6 +7,7 @@ import ThumbDownRoundedIcon from "@mui/icons-material/ThumbDownRounded";
 import PlayArrowRoundedIcon from "@mui/icons-material/PlayArrowRounded";
 import PauseRoundedIcon from "@mui/icons-material/PauseRounded";
 import { fetchDeezerPreview } from "../../services/deezerApi";
+import { pre } from "framer-motion/client";
 
 const MatchingSection = ({ selectedSong, isMatching, onMatch }) => {
   const [recommendations, setRecommendations] = useState([]);
@@ -22,15 +23,21 @@ const MatchingSection = ({ selectedSong, isMatching, onMatch }) => {
     const fetchRecommendations = async () => {
       setIsLoading(true);
       try {
-        console.log("Fetching recommendations for track:", selectedSong);
+        const previewUrl = await fetchDeezerPreview(selectedSong.name, selectedSong.artist) 
+        if(!previewUrl) {
+          console.error("No available URL");
+           return ;
+          }
+        console.log("Fetching recommendations for track:", previewUrl);
         const response = await fetch(
           `http://localhost:5001/api/recommendations/${selectedSong.id}`,
-          {
+          {method : "POST",
             headers: {
               Accept: "application/json",
               "Content-Type": "application/json",
             },
             credentials: "include",
+            body : JSON.stringify({previewUrl}),
           }
         );
 
