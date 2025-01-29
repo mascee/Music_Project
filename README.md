@@ -1,6 +1,6 @@
-## Music App Project 
+### Groovr - Music App Project 
 
-## Genre Music Prediction Using Machine Learning
+## Theme: Genre Music Prediction Using Machine Learning
 
 ## Team Members: 
 - **Nathaly Lamas**
@@ -15,8 +15,8 @@
 ## The project uses a trained machine learning model to predict music genres from listening to provided MP3 snippets of music.
 
 ## How it works:
-**The music App** is connected to the user's [Spotify](https://open.spotify.com/) account. User is offered to search a song of liking, app gets the preview of the song online. This preview song then gets into the preprocess step and gets sliced to 3 second segments. Using **Librosa library** features extracted in the same process. The program checks to see if the song's features are the similar to trained model features. Then the preprocessed song gets through the saved machine learning model and predicts the genre of the preview song.
-The matching genre is then sent into in the App for the song recommendation. App pulls 20 new song recommendations with matching genre for User. User can create a new playlist with the recommended songs by swiping right or left.  User can add these songs to their **Spotify** account as a playlist.
+**Groovr App** is connected to User's [Spotify](https://open.spotify.com/) account. User is offered to search a song of liking, the app gets a preview of the song online. This preview song then gets into the preprocess step and gets sliced to 3 second segments. Using **Librosa library** features extracted in the same process. The program checks to see if the song's features are similar to trained model features. Then the preprocessed song gets through saved machine learning model and predicts the genre of the preview song.
+The matching genre is then sent into the App for the song recommendation. App pulls 20 new song recommendations with matching genre for User. User can create a new playlist with the recommended songs by swiping right or left.  User can add these songs to their **Spotify** account as a playlist.
 
 
 ## Why it's important
