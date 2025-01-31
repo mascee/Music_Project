@@ -56,6 +56,9 @@ This project was done in 2 weeks and for future improvement, more genres could b
 Better accuracy could be achieved. 
 
 
+ [Link](https://docs.google.com/presentation/d/13iN-Cv-KhujOuqdeC1TD2KnFAwmdfenEz-zsqc3deFI/edit#slide=id.g32b01b9dc6f_1_3) to our presentation.
+
+
 
 
 
